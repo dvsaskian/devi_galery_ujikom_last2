@@ -19,7 +19,7 @@ if (isset($_GET['like_foto_id'])) {
     $username = $foto_data['username'];
 
     if ($foto_owner_id != $user_id) {
-        $notif_message = "$username menyukai postingan Anda: '$judul_foto'"; // Tidak membawa $user_id lagi
+        $notif_message = "$username menyukai postingan Anda: '$judul_foto'"; 
 
         $insert_notif = mysqli_query($koneksi, "INSERT INTO notifikasi (user_id, message, foto_id, send_id, status) 
                                         VALUES ('$foto_owner_id', '$notif_message', '$foto_id', '$user_id', 'unread')");
@@ -47,7 +47,7 @@ if (isset($_GET['komentar_foto_id']) && isset($_GET['isi_komentar'])) {
     $username = $foto_data['username'];
 
     if ($foto_owner_id != $user_id) {
-        $notif_message = "$username mengomentari postingan Anda: '$judul_foto' - $isi_komentar"; // Tidak membawa $user_id lagi
+        $notif_message = "$username mengomentari postingan Anda: '$judul_foto' - $isi_komentar"; 
 
         $insert_notif = mysqli_query($koneksi, "INSERT INTO notifikasi (user_id, message, foto_id, send_id, status) 
                                         VALUES ('$foto_owner_id', '$notif_message', '$foto_id', '$user_id', 'unread')");

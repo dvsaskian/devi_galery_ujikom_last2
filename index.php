@@ -17,12 +17,12 @@ function time_ago($timestamp) {
     $current_time = time();
     $time_difference = $current_time - $time_ago;
     $seconds = $time_difference;
-    $minutes      = round($seconds / 60);           // value 60 is seconds
-    $hours        = round($seconds / 3600);         // value 3600 is 60 minutes * 60 sec
-    $days         = round($seconds / 86400);        // value 86400 is 24 hours * 60 minutes * 60 sec
-    $weeks        = round($seconds / 604800);       // value 604800 is 7 days * 24 hours * 60 minutes * 60 sec
-    $months       = round($seconds / 2629440);      // value 2629440 is ((365+365+365+365+365)/5/12) days * 24 hours * 60 minutes * 60 sec
-    $years        = round($seconds / 31553280);     // value 31553280 is (365+365+365+365+365)/5 days * 24 hours * 60 minutes * 60 sec
+    $minutes      = round($seconds / 60);           
+    $hours        = round($seconds / 3600);           
+    $days         = round($seconds / 86400);           
+    $weeks        = round($seconds / 604800);           
+    $months       = round($seconds / 2629440);           
+    $years        = round($seconds / 31553280);           
 
     if ($seconds <= 60) {
         return "baru saja";
@@ -99,11 +99,18 @@ function time_ago($timestamp) {
 
                 </div>
             </div>
-               </div>
+        </div>
     </nav>
 
     <div class="container mt-2 mb-5">
         <div class="card bg-bone-white mx-3">
+            <div class="col-4  mt-3 mb-2 mx-3">
+                <div class="input-group mb-2">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Cari ...">
+                </div>
+
+            </div>
+
             <div class="row">
 
                 <?php
@@ -221,7 +228,7 @@ function time_ago($timestamp) {
                     </li>
                 <?php endif; ?>
 
-                <!-- Menampilkan nomor halaman -->
+                        
                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                     <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
                         <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
@@ -248,6 +255,25 @@ function time_ago($timestamp) {
     <script type="text/javascript" src="assets/js/bootstrap.min.js">
 
     </script>
+
+    <script>
+            document.getElementById('searchInput').addEventListener('keyup', function () {
+                let filter = this.value.toLowerCase();
+                let cards = document.querySelectorAll('.col-md-3');
+
+                cards.forEach(function (card) {
+                    let title = card.querySelector('.card-title').textContent.toLowerCase();
+                    let description = card.querySelector('.card-text').textContent.toLowerCase();
+                    
+                    if (title.includes(filter) || description.includes(filter)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+        </script>
 </body>
 
 </html>

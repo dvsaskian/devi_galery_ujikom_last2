@@ -15,7 +15,6 @@ $notif_count_query = mysqli_query($koneksi, "SELECT COUNT(*) as unread_count FRO
 $notif_count_result = mysqli_fetch_assoc($notif_count_query);
 $unread_count = $notif_count_result['unread_count'];
 
-//buat like dan komentar
 $query_favorit = mysqli_query($koneksi, "
     SELECT foto.*, 
            (SELECT COUNT(*) FROM like_foto WHERE foto_id = foto.foto_id) AS like_count,
@@ -25,7 +24,6 @@ $query_favorit = mysqli_query($koneksi, "
     LIMIT 3
 ");
 
-//buat foto terbaru
 $query_terbaru = mysqli_query($koneksi, "
     SELECT foto.* 
     FROM foto
@@ -190,18 +188,13 @@ $query_terbaru = mysqli_query($koneksi, "
     <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Ambil semua tombol yang akan menampilkan atau menyembunyikan foto
         document.querySelectorAll('.toggle-photo').forEach(button => {
             button.addEventListener('click', function() {
-                // Ambil elemen konten yang terkait dengan tombol
                 const target = document.querySelector(this.getAttribute('data-target'));
 
-                // Periksa apakah konten sudah terbuka atau belum
                 if (target.classList.contains('collapse')) {
-                    // Jika belum terbuka, tampilkan konten
                     target.classList.remove('collapse');
                 } else {
-                    // Jika sudah terbuka, sembunyikan konten
                     target.classList.add('collapse');
                 }
             });

@@ -168,7 +168,7 @@ $total_pages = ceil($total_foto / $foto_per_page);
                     </li>
                 <?php endif; ?>
 
-                <!-- Menampilkan nomor halaman -->
+                        
                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                     <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
                         <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>

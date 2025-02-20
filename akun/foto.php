@@ -237,7 +237,7 @@ $sql = mysqli_query($koneksi, "SELECT foto.*, album.nama_album FROM foto
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--  -->
+                                        
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#hapus<?php echo $data['foto_id']; ?>"><i class="bi bi-trash"></i> Hapus</button>
 

@@ -22,27 +22,21 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Menghitung jumlah notifikasi belum dibaca
 $notif_count_query = mysqli_query($koneksi, "SELECT COUNT(*) as unread_count FROM notifikasi WHERE user_id = '$user_id' AND status = 'unread'");
 $notif_count_result = mysqli_fetch_assoc($notif_count_query);
 $unread_count = $notif_count_result['unread_count'];
 
-// Menentukan jumlah foto per halaman
 $foto_per_page = 8;
 
-// Mendapatkan halaman saat ini (default ke 1 jika tidak ada di URL)
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-$start = ($page - 1) * $foto_per_page; // Menghitung offset foto yang akan ditampilkan
+$start = ($page - 1) * $foto_per_page; 
 
-// Menghitung total foto
 $total_foto_query = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM foto");
 $total_foto_result = mysqli_fetch_assoc($total_foto_query);
 $total_foto = $total_foto_result['total'];
 
-// Menghitung jumlah halaman yang dibutuhkan
 $total_pages = ceil($total_foto / $foto_per_page);
 
-// Query untuk mengambil foto dengan batasan
 $query_foto = mysqli_query($koneksi, "
     SELECT foto.*, 
            (SELECT COUNT(*) FROM like_foto WHERE foto_id = foto.foto_id) AS like_count,
@@ -169,7 +163,7 @@ $query_foto = mysqli_query($koneksi, "
                         <a href="foto_detail.php?foto_id=<?php echo $data['foto_id']; ?>" class="btn btn-primary">Lihat Foto</a>
                     </div>
                     <div class="card-footer text-center">
-                        <!-- Like and Comment buttons -->
+                        
                     </div>
                 </div>
                 </a>
@@ -179,7 +173,7 @@ $query_foto = mysqli_query($koneksi, "
             <?php } ?>
         </div>
 
-        <!-- Pagination -->
+               
         <div class="d-flex justify-content-center mt-4">
             <ul class="pagination">
                 <?php if ($page > 1): ?>
@@ -192,7 +186,7 @@ $query_foto = mysqli_query($koneksi, "
                     </li>
                 <?php endif; ?>
 
-                <!-- Menampilkan nomor halaman -->
+                        
                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                     <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
                         <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>

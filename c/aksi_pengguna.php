@@ -41,7 +41,7 @@ if (isset($_POST['edit'])) {
 
 
     if (!empty($password)) {
-        // $password = password_hash($password, PASSWORD_DEFAULT); // Gunakan password_hash untuk hashing
+        // $password = password_hash($password, PASSWORD_DEFAULT);
         $query = "UPDATE users SET username='$username', email='$email', nama_lengkap='$nama', alamat='$alamat', password='$password' WHERE user_id='$user_id'";
     } else {
         $query = "UPDATE users SET username='$username', email='$email', nama_lengkap='$nama', alamat='$alamat' WHERE user_id='$user_id'";
