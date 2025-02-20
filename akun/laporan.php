@@ -113,7 +113,7 @@ $data_foto = mysqli_num_rows($sql);
     <div class="container mt-4 mb-5">
 
         <div class="float-right mb-4">
-            <a href="cetak_pdf.php" target="_blank" class="btn btn-success">Download PDF</a>
+            <a href="cetak_pdf.php" target="_blank" class="btn btn-success">Cetak</a>
         </div>
 
         <div class="row">

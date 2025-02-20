@@ -28,6 +28,10 @@ $notif_count_query = mysqli_query($koneksi, "SELECT COUNT(*) as unread_count FRO
 $notif_count_result = mysqli_fetch_assoc($notif_count_query);
 $unread_count = $notif_count_result['unread_count'];
 
+$album_count_query = mysqli_query($koneksi, "SELECT COUNT(*) as album_count FROM album WHERE user_id ='$user_id'");
+$album_count_result = mysqli_fetch_assoc($album_count_query);
+$album_count = $album_count_result['album_count'];
+
 $query_user = mysqli_query($koneksi, "SELECT nama_lengkap FROM users WHERE user_id = '$user_id'");
 $data_user = mysqli_fetch_assoc($query_user);
 $nama_lengkap = $data_user['nama_lengkap'];
@@ -74,7 +78,9 @@ $pdf->Ln(5);
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(100, 10, 'Tanggal: ' . date('d-m-Y'), 0, 0, 'L'); 
 $pdf->Cell(100, 10, 'Pengguna: ' . $nama_lengkap, 0, 1, 'L');
+$pdf->Cell(100, 10, 'Jumlah Album: ' . $album_count, 0, 0, 'L');
 $pdf->Ln(8);
+
 
 $pdf->SetLineWidth(0.5);
 $pdf->Line(10, $pdf->GetY(), 200, $pdf->GetY());

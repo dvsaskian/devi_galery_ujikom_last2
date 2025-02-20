@@ -192,6 +192,7 @@ function time_ago($timestamp) {
                 <input type="text" id="searchInput" class="form-control" placeholder="Cari ...">
             </div>
             <a href="lihat.php" class="btn btn-primary m-2">Lihat Foto Terfavorit dan Terbaru?</a>
+            <a href="report.php" class="btn btn-warning m-2">Report</a>
 
         </div>
 
